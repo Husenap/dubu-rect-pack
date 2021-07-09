@@ -7,7 +7,7 @@ Packer::Packer(int width, int height) {
 }
 
 std::optional<Space> Packer::Pack(Rect rectangle) {
-    for (auto& space : mSpaces | std::views::reverse){
+    for (auto& space : mSpaces | std::views::reverse) {
         space.CanFitRect(rectangle);
     }
 
