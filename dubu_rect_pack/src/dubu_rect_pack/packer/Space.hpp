@@ -10,7 +10,7 @@ public:
 
     bool CanFitRect(Rect rectangle) const;
 
-    bool operator==(const Space& rhs) {
+    bool operator==(const Space& rhs) const {
         return mLeft == rhs.mLeft && mTop == rhs.mTop && mRight == rhs.mRight &&
                mBottom == rhs.mBottom;
     }
