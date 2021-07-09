@@ -1,27 +1,30 @@
 #pragma once
 
-#include "Rect.hpp"
+#include "Types.hpp"
 
 namespace dubu::rect_pack {
 
 class Space {
 public:
-    explicit Space(int left, int top, int right, int bottom);
+    explicit Space(std::uint32_t left,
+                   std::uint32_t top,
+                   std::uint32_t width,
+                   std::uint32_t height);
 
-    bool CanFitRect(Rect rectangle) const;
+    bool CanFitRect(Size rectangle) const;
 
-    bool operator==(const Space& rhs) const {
-        return mLeft == rhs.mLeft && mTop == rhs.mTop && mRight == rhs.mRight &&
-               mBottom == rhs.mBottom;
-    }
+    std::pair<Space, std::vector<Space>> Split(Size rectangle) const;
+
+    std::uint32_t Area() const { return mArea; }
+
+    operator Rect() const { return Rect{mLeft, mTop, mWidth, mHeight}; }
 
 private:
-    int mLeft;
-    int mTop;
-    int mRight;
-    int mBottom;
-    int mWidth;
-    int mHeight;
+    std::uint32_t mLeft;
+    std::uint32_t mTop;
+    std::uint32_t mWidth;
+    std::uint32_t mHeight;
+    std::uint32_t mArea;
 };
 
 }  // namespace dubu::rect_pack

@@ -6,10 +6,9 @@ set(src_precompiled
 set(src_packer
     "src/dubu_rect_pack/packer/Packer.cpp"
     "src/dubu_rect_pack/packer/Packer.hpp"
-    "src/dubu_rect_pack/packer/Rect.cpp"
-    "src/dubu_rect_pack/packer/Rect.hpp"
     "src/dubu_rect_pack/packer/Space.cpp"
-    "src/dubu_rect_pack/packer/Space.hpp")
+    "src/dubu_rect_pack/packer/Space.hpp"
+    "src/dubu_rect_pack/packer/Types.hpp")
 
 set(src_dubu_rect_pack
     "src/dubu_rect_pack/dubu_rect_pack.hpp")

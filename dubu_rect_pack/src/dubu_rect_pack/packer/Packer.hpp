@@ -8,7 +8,7 @@ class Packer {
 public:
     Packer(int width, int height);
 
-    std::optional<Space> Pack(Rect rectangle);
+    std::optional<Rect> Pack(Size rectangle);
 
 private:
     std::vector<Space> mSpaces;
