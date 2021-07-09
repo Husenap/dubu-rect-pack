@@ -1,0 +1,27 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: ['Debug', 'Release']
+    
+    runs-on: 'windows-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate
+      shell: bash
+      run: scripts/gen -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${CMAKE_OPTIONS}
+      
+    - name: Build
+      shell: bash
+      run: scripts/build
+
+    - name: Test
+      shell: bash
+      run: scripts/test
