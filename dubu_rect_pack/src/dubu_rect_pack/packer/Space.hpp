@@ -6,13 +6,22 @@ namespace dubu::rect_pack {
 
 class Space {
 public:
+    explicit Space(int left, int top, int right, int bottom);
+
     bool CanFitRect(Rect rectangle) const;
+
+    bool operator==(const Space& rhs) {
+        return mLeft == rhs.mLeft && mTop == rhs.mTop && mRight == rhs.mRight &&
+               mBottom == rhs.mBottom;
+    }
 
 private:
     int mLeft;
-    int mRight;
     int mTop;
+    int mRight;
     int mBottom;
+    int mWidth;
+    int mHeight;
 };
 
 }  // namespace dubu::rect_pack
