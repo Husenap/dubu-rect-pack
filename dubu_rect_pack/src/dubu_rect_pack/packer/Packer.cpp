@@ -1,7 +1,5 @@
 #include "Packer.hpp"
 
-#include <ranges>
-
 namespace dubu::rect_pack {
 
 Packer::Packer(int width, int height) {
