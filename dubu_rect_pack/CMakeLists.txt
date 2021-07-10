@@ -1,14 +1,22 @@
-set(target_name "new_project_name")
+set(target_name "dubu_rect_pack")
 
 set(src_precompiled
-    "src/new_project_name/precompiled.h")
+    "src/dubu_rect_pack/precompiled.hpp")
 
-set(src_new_project_name
-    "src/new_project_name/new_project_name.h")
+set(src_packer
+    "src/dubu_rect_pack/packer/Packer.cpp"
+    "src/dubu_rect_pack/packer/Packer.hpp"
+    "src/dubu_rect_pack/packer/Space.cpp"
+    "src/dubu_rect_pack/packer/Space.hpp"
+    "src/dubu_rect_pack/packer/Types.hpp")
+
+set(src_dubu_rect_pack
+    "src/dubu_rect_pack/dubu_rect_pack.hpp")
 
 set(src_files
     ${src_precompiled}
-    ${src_new_project_name})
+    ${src_packer}
+    ${src_dubu_rect_pack})
 
 # Project
 add_library(${target_name} STATIC ${src_files})
