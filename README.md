@@ -6,8 +6,8 @@ C++ library for packing rectangles
 
 ## Algorithm
 
-When packing a new rect: it tries to find the smallest area it fits into.
-When splitting: it prefers the split which yields the biggest area in one of the spaces.
+* When packing a new rect: it tries to find the smallest area it fits into.
+* When splitting: it prefers the split which yields the biggest area in one of the spaces.
 
 ## Example Usage
 
