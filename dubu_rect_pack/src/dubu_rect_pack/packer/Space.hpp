@@ -13,7 +13,8 @@ public:
 
     bool CanFitRect(Size rectangle) const;
 
-    std::pair<Space, std::vector<Space>> Split(Size rectangle) const;
+    std::tuple<Space, std::optional<Space>, std::optional<Space>> Split(
+        Size rectangle) const;
 
     std::uint32_t Area() const { return mArea; }
 

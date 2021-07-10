@@ -16,24 +16,27 @@ bool Space::CanFitRect(Size rectangle) const {
     return (rectangle.width <= mWidth) && (rectangle.height <= mHeight);
 }
 
-std::pair<Space, std::vector<Space>> Space::Split(Size rectangle) const {
+std::tuple<Space, std::optional<Space>, std::optional<Space>> Space::Split(
+    Size rectangle) const {
     assert(rectangle.width <= mWidth);
     assert(rectangle.height <= mHeight);
 
     if (rectangle.width == mWidth && rectangle.height == mHeight) {
-        return {*this, {}};
+        return {*this, std::nullopt, std::nullopt};
     } else if (rectangle.width == mWidth) {
         return {Space(mLeft, mTop, mWidth, rectangle.height),
-                {Space(mLeft,
-                       mTop + rectangle.height,
-                       mWidth,
-                       mHeight - rectangle.height)}};
+                Space(mLeft,
+                      mTop + rectangle.height,
+                      mWidth,
+                      mHeight - rectangle.height),
+                std::nullopt};
     } else if (rectangle.height == mHeight) {
         return {Space(mLeft, mTop, rectangle.width, mHeight),
-                {Space(mLeft + rectangle.width,
-                       mTop,
-                       mWidth - rectangle.width,
-                       mHeight)}};
+                Space(mLeft + rectangle.width,
+                      mTop,
+                      mWidth - rectangle.width,
+                      mHeight),
+                std::nullopt};
     } else {
         Space newSpace(mLeft, mTop, rectangle.width, rectangle.height);
         Space bottomSpace(
@@ -43,18 +46,18 @@ std::pair<Space, std::vector<Space>> Space::Split(Size rectangle) const {
 
         if (bottomSpace.Area() >= rightSpace.Area()) {
             return {newSpace,
-                    {bottomSpace,
-                     Space(mLeft + rectangle.width,
-                           mTop,
-                           mWidth - rectangle.width,
-                           rectangle.height)}};
+                    bottomSpace,
+                    Space(mLeft + rectangle.width,
+                          mTop,
+                          mWidth - rectangle.width,
+                          rectangle.height)};
         } else {
             return {newSpace,
-                    {rightSpace,
-                     Space(mLeft,
-                           mTop + rectangle.height,
-                           rectangle.width,
-                           mHeight - rectangle.height)}};
+                    rightSpace,
+                    Space(mLeft,
+                          mTop + rectangle.height,
+                          rectangle.width,
+                          mHeight - rectangle.height)};
         }
     }
 }

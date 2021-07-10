@@ -14,13 +14,16 @@ std::optional<Rect> Packer::Pack(Size rectangle) {
             continue;
         }
 
-        const auto [occupied, newSpaces] = space.Split(rectangle);
+        const auto [occupied, newSpace1, newSpace2] = space.Split(rectangle);
 
         mSpaces.erase(it.base() - 1);
 
-        std::move(std::begin(newSpaces),
-                  std::end(newSpaces),
-                  std::back_inserter(mSpaces));
+        if (newSpace1) {
+            mSpaces.emplace_back(std::move(*newSpace1));
+            if (newSpace2) {
+                mSpaces.emplace_back(std::move(*newSpace2));
+            }
+        }
 
         std::sort(std::begin(mSpaces),
                   std::end(mSpaces),
