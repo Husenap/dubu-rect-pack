@@ -20,6 +20,7 @@ set(src_files
 
 # Project
 add_library(${target_name} STATIC ${src_files})
+add_library(dubu::rect_pack ALIAS ${target_name})
 set_target_properties(${target_name} PROPERTIES LINKER_LANGUAGE CXX)
 
 target_link_libraries(${target_name}
